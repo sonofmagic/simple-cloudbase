@@ -11,8 +11,8 @@ export const baseOption: ICloudBaseConfig & { version: string } = {
   functionRoot: './dist'
 }
 
-export function getBaseOption () {
-  return { ...baseOption }
+export function getBaseOption (functionRoot: string) {
+  return { ...baseOption, functionRoot }
 }
 
 export async function getFunctions (distPath: string) {
@@ -42,10 +42,12 @@ export async function writeCloudbaserc (
   rootDir: string,
   distDir: string = 'dist'
 ) {
-  const data = await getFunctions(path.join(rootDir, distDir))
+  const functions = await getFunctions(path.join(rootDir, distDir))
+  const option = getBaseOption(distDir)
+  option.functions = functions
   return await fsp.writeFile(
     path.resolve(rootDir, 'cloudbaserc.json'),
-    JSON.stringify(data),
+    JSON.stringify(option),
     {
       encoding: 'utf-8'
     }

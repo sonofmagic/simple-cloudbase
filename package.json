@@ -4,7 +4,11 @@
   "description": "simple-cloudbase",
   "main": "dist/index.js",
   "scripts": {
+    "build": "tsc",
     "test": "jest"
+  },
+  "bin": {
+    "stcb": "bin/stcb"
   },
   "repository": {
     "type": "git",
@@ -37,12 +41,14 @@
     "eslint-plugin-jest": "^25.2.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.1",
+    "execa": "^5.1.1",
     "jest": "^27.3.1",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0",
     "wx-server-sdk": "^2.5.3"
   },
   "dependencies": {
+    "commander": "^8.3.0",
     "fork-ts-checker-webpack-plugin": "^6.4.0",
     "lodash": "^4.17.21",
     "ts-loader": "^9.2.6",

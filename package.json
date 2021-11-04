@@ -1,11 +1,14 @@
 {
   "name": "simple-cloudbase",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "simple-cloudbase",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "watch": "tsc -w",
+    "test": "jest",
+    "debug:stcb": "node bin/stcb"
   },
   "bin": {
     "stcb": "bin/stcb"

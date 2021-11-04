@@ -2,6 +2,10 @@
   "extends": "./configs/base.tsconfig",
   "compilerOptions": {
     "sourceMap": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   }
 }

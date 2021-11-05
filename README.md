@@ -19,11 +19,38 @@
 - [x] `cloudbaserc.json` 自动生成
 - [x] 云函数自动打包 , `Tree shaking` , 压缩
 - [x] 特殊情况处理, (`exclude` 和 `external`) 的情况
-- [x] `Commonjs`, `ESM`, `TS` 支持
+- [] `Commonjs`, `ESM`, `TS` 支持
 - [x] 公共包逻辑复用
 - [] 本地调试
 
-## 架构原理
+
+## alias 支持
+
+直接在项目根目录下添加 `tsconfig.json` or `jsconfig.json`
+
+然后在里面添加
+
+```json
+  "compilerOptions": {
+    ......
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"]
+      ...
+    }
+    ......
+  },
+```
+
+这样在打包时，既可以使用alias，也可以顺便添加 `vscode` 智能提示，可谓是一举两得。
+
+## simple.json
+
+这个是这套工具链的配置文件，在根目录(root)里的，控制所有的函数，在函数里的，控制这个函数的配置。
+
+> 在多云函数部署时，每个云函数，可以看做是一个独立的 Nodejs 项目
+
+## 原理
 
 [抛砖引玉：一种改善微信云开发 , 开发者体验的思路](https://zhuanlan.zhihu.com/p/353260521)
 

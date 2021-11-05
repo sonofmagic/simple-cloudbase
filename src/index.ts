@@ -1,4 +1,4 @@
-import { getFunctions } from './util'
+import { getFunctions, PickKeys, copyConfigJson } from './util'
 import { build } from './build/index'
 import { mergeDefaultConfig } from './build/defaults'
 import type { BuildOptions, BuildResult } from 'esbuild'
@@ -10,56 +10,31 @@ export interface IBuildPathOption {
   outdir: string
 }
 
-const PickKeys = [
-  'bundle',
-  'splitting',
-  'preserveSymlinks',
-  'outfile',
-  'metafile',
-  'outdir',
-  'outbase',
-  'platform',
-  'external',
-  'loader',
-  'resolveExtensions',
-  'mainFields',
-  'conditions',
-  'write',
-  'allowOverwrite',
-  'tsconfig',
-  'outExtension',
-  'publicPath',
-  'entryNames',
-  'chunkNames',
-  'assetNames',
-  'inject',
-  'banner',
-  'footer',
-  'incremental',
-  'entryPoints',
-  'stdin',
-  'plugins',
-  'absWorkingDir',
-  'nodePaths',
-  'watch'
-]
-
 export async function buildAll (opt: IBuildPathOption) {
   const options = await getFunctions(path.resolve(opt.rootdir, opt.srcdir))
-  const res = await Promise.all([
+  const buildResultArray = await Promise.all(
     options.reduce<Promise<BuildResult>[]>((acc, cur) => {
+      const outdir = path.resolve(opt.rootdir, opt.outdir, cur.name)
       const fnOpt: Partial<BuildOptions> = {
         entryPoints: [path.resolve(cur.path, 'index')],
-        outfile: path.resolve(opt.rootdir, opt.outdir, cur.name, 'index.js')
+        outfile: path.resolve(outdir, 'index.js')
       }
 
       const config = mergeDefaultConfig(
         fnOpt,
         pick(cur.extra, PickKeys) as BuildOptions
       )
-      acc.push(build(config))
+      acc.push(
+        build(config).then(async (res) => {
+          await copyConfigJson(cur.path, outdir)
+          return res
+        })
+      )
       return acc
     }, [])
-  ])
-  console.log(res)
+  )
+  for (let i = 0; i < buildResultArray.length; i++) {
+    const option = options[i]
+    console.log(`${option.name}:\n`, buildResultArray[i])
+  }
 }

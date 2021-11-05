@@ -52,3 +52,46 @@ export async function getFunctions (distPath: string) {
   }, [])
   return functions
 }
+
+export async function copyConfigJson (srcDir: string, outDir: string) {
+  const filename = 'config.json'
+  const srcPath = path.resolve(srcDir, filename)
+  if (fs.existsSync(srcPath)) {
+    const outPath = path.resolve(outDir, filename)
+    await fsp.copyFile(srcPath, outPath)
+  }
+}
+
+export const PickKeys = [
+  'bundle',
+  'splitting',
+  'preserveSymlinks',
+  'outfile',
+  'metafile',
+  'outdir',
+  'outbase',
+  'platform',
+  'external',
+  'loader',
+  'resolveExtensions',
+  'mainFields',
+  'conditions',
+  'write',
+  'allowOverwrite',
+  'tsconfig',
+  'outExtension',
+  'publicPath',
+  'entryNames',
+  'chunkNames',
+  'assetNames',
+  'inject',
+  'banner',
+  'footer',
+  'incremental',
+  'entryPoints',
+  'stdin',
+  'plugins',
+  'absWorkingDir',
+  'nodePaths',
+  'watch'
+]

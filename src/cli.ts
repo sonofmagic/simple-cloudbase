@@ -1,5 +1,6 @@
 import { Command } from 'commander'
 import { writeCloudbaserc } from './templete/cloudbaserc'
+import { buildAll } from './index'
 const { version } = require('../package.json')
 const program = new Command()
 program.version(version)
@@ -18,12 +19,20 @@ program
     console.log('Successfully generate cloudbaserc.json')
   })
 
+program
+  .command('build')
+  .description('build scf')
+  .option('-srcdir [path]', 'the src functions dir')
+  .option('-outdir [path]', 'the output functions dir')
+  .action(async (args) => {
+    const Outdir = args.Outdir
+    const Srcdir = args.Srcdir
+
+    await buildAll({
+      outdir: Outdir || 'dist',
+      rootdir: cwd,
+      srcdir: Srcdir || 'src'
+    })
+  })
+
 program.parse(process.argv)
-
-// const options = program.opts()
-
-// console.log(options)
-
-// if (options.generate) {
-//   writeCloudbaserc(cwd)
-// }

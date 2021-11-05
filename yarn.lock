@@ -4091,7 +4091,7 @@ esbuild-windows-arm64@0.13.12:
 
 esbuild@^0.13.12:
   version "0.13.12"
-  resolved "https://registry.npmmirror.com/esbuild/download/esbuild-0.13.12.tgz?cache=0&sync_timestamp=1635657345922&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fesbuild%2Fdownload%2Fesbuild-0.13.12.tgz#9cac641594bf03cf34145258c093d743ebbde7ca"
+  resolved "https://registry.npmmirror.com/esbuild/download/esbuild-0.13.12.tgz#9cac641594bf03cf34145258c093d743ebbde7ca"
   integrity sha1-nKxkFZS/A880FFJYwJPXQ+u958o=
   optionalDependencies:
     esbuild-android-arm64 "0.13.12"

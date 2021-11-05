@@ -17,10 +17,10 @@
 ## TODO LIST:
 
 - [x] `cloudbaserc.json` 自动生成
-- [] 云函数自动打包 , `Tree shaking` , 压缩
-- [] 特殊情况处理, (`exclude` 和 `external`) 的情况
-- [] `Commonjs`, `ESM`, `TS` 支持
-- [] 公共包逻辑复用
+- [x] 云函数自动打包 , `Tree shaking` , 压缩
+- [x] 特殊情况处理, (`exclude` 和 `external`) 的情况
+- [x] `Commonjs`, `ESM`, `TS` 支持
+- [x] 公共包逻辑复用
 - [] 本地调试
 
 ## 架构原理

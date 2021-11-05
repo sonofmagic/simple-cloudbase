@@ -8,8 +8,11 @@ export interface ISimpleJsonConfig {
 
 export type IBuiltinOption = {
   path: string
-  [key: string]: any
-} & ISimpleJsonConfig
+  name: string
+  extra?: ISimpleJsonConfig & {
+    [key: string]: any
+  }
+}
 
 export async function getFunctions (distPath: string) {
   const fileList = await fsp.readdir(distPath)
@@ -18,7 +21,8 @@ export async function getFunctions (distPath: string) {
     const stat = fs.statSync(dirPath)
     if (stat.isDirectory()) {
       const item: IBuiltinOption = {
-        path: dirPath
+        path: dirPath,
+        name: cur
       }
       const configPath = path.resolve(dirPath, 'simple.json')
       const isConfigExisted = fs.existsSync(configPath)
@@ -29,7 +33,8 @@ export async function getFunctions (distPath: string) {
           })
           const config: ISimpleJsonConfig = JSON.parse(data)
           if (!config.ignore) {
-            Object.assign(item, config)
+            item.extra = config
+
             acc.push(item)
           }
           // true then ignore it

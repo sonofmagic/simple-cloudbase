@@ -1,12 +1,11 @@
 import { writeCloudbaserc } from '@/templete/cloudbaserc'
+import { nativeProjectPath } from './util'
 import path from 'path'
 import fs, { promises as fsp } from 'fs'
 import type {
   ICloudBaseConfig
   // ICloudFunction
 } from '@cloudbase/cli/types/types'
-
-const nativeProjectPath = path.resolve(__dirname, 'fixtures/native')
 
 describe('templete functions test', () => {
   test('generate cloudbaserc.json templete ', async () => {

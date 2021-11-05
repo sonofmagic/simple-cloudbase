@@ -1,7 +1,7 @@
 {
   "extends": "./configs/base.tsconfig",
   "compilerOptions": {
-    "sourceMap": false,
+    "sourceMap": true,
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {

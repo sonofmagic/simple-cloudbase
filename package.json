@@ -1,7 +1,7 @@
 {
   "name": "simple-cloudbase",
   "version": "0.1.0",
-  "description": "simple-cloudbase",
+  "description": "a simple toolkit for cloudbase,which aims to improve wechat miniprogram developing experience",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {

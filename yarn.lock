@@ -9607,11 +9607,6 @@ typescript-json-schema@^0.43.0:
     typescript "~4.0.2"
     yargs "^15.4.1"
 
-typescript@^4.4.4:
-  version "4.4.4"
-  resolved "https://registry.npmmirror.com/typescript/download/typescript-4.4.4.tgz#2cd01a1a1f160704d3101fd5a58ff0f9fcb8030c"
-  integrity sha1-LNAaGh8WBwTTEB/VpY/w+fy4Aww=
-
 typescript@~4.0.2:
   version "4.0.8"
   resolved "https://registry.npmmirror.com/typescript/download/typescript-4.0.8.tgz?cache=0&sync_timestamp=1635923847615&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Ftypescript%2Fdownload%2Ftypescript-4.0.8.tgz#5739105541db80a971fdbd0d56511d1a6f17d37f"

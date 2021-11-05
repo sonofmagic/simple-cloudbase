@@ -4,6 +4,7 @@ import type {
   ICloudBaseConfig,
   ICloudFunction
 } from '@cloudbase/cli/types/types'
+import { getFunctions } from '@/util'
 
 export interface ISimpleJsonConfig {
   ignore?: boolean
@@ -13,14 +14,16 @@ export interface ISimpleJsonConfig {
 export const baseOption: ICloudBaseConfig & { version: string } = {
   version: '2.0',
   envId: '{{env.ENV_ID}}',
-  functionRoot: './dist'
+  functionRoot: 'dist'
 }
 
 export function getBaseOption (functionRoot: string) {
   return { ...baseOption, functionRoot }
 }
 
-export async function getFunctions (distPath: string) {
+export async function getDeployFunctions (distPath: string) {
+  const res = await getFunctions(distPath)
+  console.log(res)
   const fileList = await fsp.readdir(distPath)
   const functions = fileList.reduce<ICloudFunction[]>((acc, cur) => {
     const dirPath = path.resolve(distPath, cur)
@@ -68,7 +71,7 @@ export async function writeCloudbaserc (
   rootDir: string,
   distDir: string = 'dist'
 ) {
-  const functions = await getFunctions(path.join(rootDir, distDir))
+  const functions = await getDeployFunctions(path.join(rootDir, distDir))
   const option = getBaseOption(distDir)
   option.functions = functions
   return await fsp.writeFile(

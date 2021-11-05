@@ -19,10 +19,14 @@
 - [x] `cloudbaserc.json` 自动生成
 - [x] 云函数自动打包 , `Tree shaking` , 压缩
 - [x] 特殊情况处理, (`exclude` 和 `external`) 的情况
-- [] `Commonjs`, `ESM`, `TS` 支持
+- [x] `Commonjs`, `ESM`, `TS` 支持
 - [x] 公共包逻辑复用
 - [] 本地调试
+- [] 部署到服务器环境(非Serverless)
 
+## 部署及调试
+
+直接使用 [CloudBase CLI](https://docs.cloudbase.net/cli-v1/intro) 作为部署工具
 
 ## alias 支持
 

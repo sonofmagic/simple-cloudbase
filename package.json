@@ -1,11 +1,11 @@
 {
   "name": "simple-cloudbase",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "simple-cloudbase",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "yarn clear && tsc -p tsconfig.build.json",
     "watch": "tsc -w",
     "test": "jest",
     "debug:stcb": "node bin/stcb",

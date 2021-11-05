@@ -1,0 +1,15 @@
+{
+  "extends": "./configs/base.tsconfig",
+  "compilerOptions": {
+    "sourceMap": false,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "composite": true,
+    "rootDir": "src",
+    "outDir": "lib"
+  },
+  "include": ["src"]
+}

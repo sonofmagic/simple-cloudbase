@@ -1,5 +1,5 @@
 import path from 'path'
-import { isDev, isProd } from '@/env'
+import { isDev, isProd } from '../env'
 import type { BuildOptions } from 'esbuild'
 
 export function getDefaultConfig (): BuildOptions {

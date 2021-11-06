@@ -1,4 +1,4 @@
-import { writeCloudbaserc } from '@/templete/cloudbaserc'
+import { writeCloudbaserc } from '../src/templete/cloudbaserc'
 import { nativeProjectPath } from './util'
 import path from 'path'
 import fs, { promises as fsp } from 'fs'

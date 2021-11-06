@@ -8,6 +8,7 @@ export interface IBuildPathOption {
   rootdir: string
   srcdir: string
   outdir: string
+  watch?: boolean
 }
 
 export async function buildAll (opt: IBuildPathOption) {
@@ -24,6 +25,9 @@ export async function buildAll (opt: IBuildPathOption) {
         fnOpt,
         pick(cur.extra, PickKeys) as BuildOptions
       )
+      if (opt.watch) {
+        config.watch = true
+      }
       acc.push(
         build(config).then(async (res) => {
           await copyConfigJson(cur.path, outdir)

@@ -1,7 +1,7 @@
 {
   "name": "simple-cloudbase",
-  "version": "0.1.0",
-  "description": "simple-cloudbase",
+  "version": "0.1.2",
+  "description": "a simple toolkit for cloudbase,which aims to improve wechat miniprogram developing experience",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -9,7 +9,7 @@
     "watch": "tsc -w",
     "test": "jest",
     "debug:stcb": "node bin/stcb",
-    "publish:npm": "yarn publish --registry https://registry.npmjs.org/",
+    "publish:npm": "yarn publish",
     "clear": "node scripts/clear.js"
   },
   "files": [
@@ -62,7 +62,9 @@
   "dependencies": {
     "commander": "^8.3.0",
     "esbuild": "^0.13.12",
-    "lodash": "^4.17.21",
-    "typescript": "^4.4.4"
+    "lodash": "^4.17.21"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   }
 }

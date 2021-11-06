@@ -14,6 +14,9 @@ export type IBuiltinOption = {
   }
 }
 
+export function resolve (...pathSegments: string[]) {
+  return path.resolve(...pathSegments)
+}
 export async function getFunctions (distPath: string) {
   const fileList = await fsp.readdir(distPath)
   const functions = fileList.reduce<IBuiltinOption[]>((acc, cur) => {

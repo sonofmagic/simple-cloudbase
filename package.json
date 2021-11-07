@@ -39,7 +39,7 @@
   "bugs": {
     "url": "https://github.com/sonofmagic/simple-cloudbase/issues"
   },
-  "homepage": "https://github.com/sonofmagic/simple-cloudbase#readme",
+  "homepage": "https://cloudbase.icebreaker.top",
   "devDependencies": {
     "@cloudbase/cli": "^1.9.2",
     "@types/jest": "^27.0.2",

@@ -1,7 +1,7 @@
 import { Command } from 'commander'
 import { writeCloudbaserc } from './templete/cloudbaserc'
-import { buildAll } from './buildAll'
-import { initProject } from './init'
+import { buildAll, initProject } from './index'
+import { setDev, setProd } from './env'
 const { version } = require('../package.json')
 const program = new Command()
 program.version(version)
@@ -28,7 +28,7 @@ program
   .action(async (args) => {
     const Outdir = args.Outdir
     const Srcdir = args.Srcdir
-
+    setProd()
     await buildAll({
       outdir: Outdir || 'dist',
       rootdir: cwd,
@@ -44,7 +44,7 @@ program
   .action(async (args) => {
     const Outdir = args.Outdir
     const Srcdir = args.Srcdir
-
+    setDev()
     await buildAll({
       outdir: Outdir || 'dist',
       rootdir: cwd,

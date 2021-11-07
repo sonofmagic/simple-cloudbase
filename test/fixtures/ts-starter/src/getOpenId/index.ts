@@ -1,8 +1,6 @@
-import cloud from 'wx-server-sdk'
+import { cloudInit } from '~/common/init'
 
-cloud.init({
-  env: cloud.DYNAMIC_CURRENT_ENV as unknown
-})
+const cloud = cloudInit()
 
 export async function main (event, context) {
   const wxContext = cloud.getWXContext()

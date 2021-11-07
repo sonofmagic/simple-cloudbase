@@ -14,5 +14,8 @@
   },
   "dependencies": {
     "wx-server-sdk": "latest"
+  },
+  "devDependencies": {
+    "simple-cloudbase": "latest"
   }
 }

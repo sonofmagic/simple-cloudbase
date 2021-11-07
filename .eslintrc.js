@@ -16,5 +16,11 @@ module.exports = {
     'jest'
   ],
   rules: {
+
+  },
+  globals: {
+    test: true,
+    expect: true,
+    describe: true
   }
 }

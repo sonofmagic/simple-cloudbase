@@ -1,4 +1,5 @@
 import { promises as fsp } from 'fs'
+
 import { resolve } from './util'
 
 async function copyAllTemplete (projectName?: string) {
@@ -37,26 +38,55 @@ async function copyAllTemplete (projectName?: string) {
     './.gitignore',
     ['cloudbaserc.json', 'node_modules', 'dist'].join('\n')
   )
+  await fsp.writeFile(
+    './tsconfig.json',
+    JSON.stringify({
+      compilerOptions: {
+        baseUrl: '.',
+        paths: {
+          '~/*': ['./src/*']
+        }
+      },
+      exclude: ['node_modules']
+    })
+  )
   await fsp.mkdir('./src')
   await fsp.mkdir('./src/getOpenId')
   await fsp.writeFile(
     './src/getOpenId/index.ts',
+    `import { cloudInit } from '~/common/init'
+
+    const cloud = cloudInit()
+    
+    export async function main (event, context) {
+      const wxContext = cloud.getWXContext()
+    
+      return {
+        openid: wxContext.OPENID,
+        appid: wxContext.APPID,
+        unionid: wxContext.UNIONID
+      }
+    }
+  `
+  )
+  await fsp.mkdir('./src/common')
+  await fsp.writeFile(
+    './src/common/init.ts',
     `import cloud from 'wx-server-sdk'
 
-  cloud.init({
-    env: cloud.DYNAMIC_CURRENT_ENV as unknown
-  })
-  
-  export async function main (event, context) {
-    const wxContext = cloud.getWXContext()
-  
-    return {
-      openid: wxContext.OPENID,
-      appid: wxContext.APPID,
-      unionid: wxContext.UNIONID
+    export function cloudInit (env?: string) {
+      return cloud.init({
+        env: env || (cloud.DYNAMIC_CURRENT_ENV as unknown)
+      })
     }
-  }
   `
+  )
+  await fsp.writeFile(
+    './src/common/simple.json',
+    JSON.stringify({
+      ignore: true,
+      externals: []
+    })
   )
 }
 export async function initProject (name?: string) {
@@ -65,11 +95,17 @@ export async function initProject (name?: string) {
     if (name) {
       const path = resolve(cwd, name)
       await fsp.mkdir(path)
-      await process.chdir(path)
+      process.chdir(path)
     }
     await copyAllTemplete(name)
     console.log(`初始化云开发项目${name || ''}成功`)
+    return true
   } catch (error) {
-    console.error(error)
+    if (error.code === 'EEXIST') {
+      console.error(`已存在目录:${error.path},请重新指定目录名`)
+    } else {
+      console.error(error)
+    }
+    return false
   }
 }

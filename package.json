@@ -10,7 +10,8 @@
     "test": "jest",
     "debug:stcb": "node bin/stcb",
     "publish:npm": "yarn publish",
-    "clear": "node scripts/clear.js"
+    "clear": "node scripts/clear.js",
+    "raw":"node --require ts-node/register ./test/raw.ts"
   },
   "files": [
     "bin",

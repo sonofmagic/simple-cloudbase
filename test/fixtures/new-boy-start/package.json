@@ -1,0 +1,21 @@
+{
+  "name": "new-boy-start",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "stcb dev",
+    "build": "stcb build",
+    "gen": "stcb gen",
+    "deploy:dev": "tcb fn deploy --force --mode dev ",
+    "deploy:prod": "tcb fn deploy --force --mode prod",
+    "list:dev": "tcb fn list --mode dev",
+    "list:prod": "tcb fn list --mode prod",
+    "delete:dev": "tcb fn delete --mode dev",
+    "delete:prod": "tcb fn delete --mode prod"
+  },
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  },
+  "devDependencies": {
+    "simple-cloudbase": "latest"
+  }
+}

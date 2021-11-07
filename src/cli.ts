@@ -1,6 +1,6 @@
 import { Command } from 'commander'
 import { writeCloudbaserc } from './templete/cloudbaserc'
-import { buildAll } from './index'
+import { buildAll } from './buildAll'
 import { initProject } from './init'
 const { version } = require('../package.json')
 const program = new Command()

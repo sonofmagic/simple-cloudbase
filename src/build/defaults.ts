@@ -1,4 +1,4 @@
-import path from 'path'
+import { resolve } from '../util'
 import { isDev, isProd } from '../env'
 import type { BuildOptions } from 'esbuild'
 
@@ -9,9 +9,9 @@ export function getDefaultConfig (): BuildOptions {
     bundle: true,
     platform: 'node',
     target: ['node12'], // scf runtime node version
-    outfile: path.resolve(cwd, 'dist', 'index.js'),
-    sourcemap: isDev, // 调试用
-    minify: isProd, // 压缩代码
+    outfile: resolve(cwd, 'dist', 'index.js'),
+    sourcemap: isDev(), // 调试用
+    minify: isProd(), // 压缩代码
     external: [] // 跳过打包
   }
 }

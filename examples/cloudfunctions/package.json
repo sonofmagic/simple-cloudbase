@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "stcb dev",
-    "build": "stcb build",
+    "build": "npm run clean && stcb build && npm run gen",
     "gen": "stcb gen",
     "deploy:dev": "tcb fn deploy --force --mode dev ",
     "deploy:prod": "tcb fn deploy --force --mode prod",

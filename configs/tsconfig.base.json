@@ -15,11 +15,6 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "ES2017",
-    "jsx": "react",
-    "lib": [
-      "ES2017",
-      "dom"
-    ],
-    "sourceMap": true
+    "lib": ["ES2017", "dom"]
   }
 }

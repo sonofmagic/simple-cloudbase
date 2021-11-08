@@ -4,7 +4,7 @@ import type {
   ICloudBaseConfig,
   ICloudFunction
 } from '@cloudbase/cli/types/types'
-import { getFunctions } from '../util'
+import { getFunctions, jsonStringify } from '../util'
 
 export interface ISimpleJsonConfig {
   ignore?: boolean
@@ -52,7 +52,7 @@ export async function writeCloudbaserc (
   option.functions = functions
   return await fsp.writeFile(
     path.resolve(rootDir, 'cloudbaserc.json'),
-    JSON.stringify(option, null, 2),
+    jsonStringify(option),
     {
       encoding: 'utf-8'
     }

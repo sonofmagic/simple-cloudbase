@@ -1,35 +1,31 @@
 import { promises as fsp } from 'fs'
 
-import { resolve } from './util'
+import { resolve, jsonStringify } from './util'
 
 async function copyAllTemplete (projectName?: string) {
   await fsp.writeFile(
     './package.json',
-    JSON.stringify(
-      {
-        name: projectName || 'my-simple-cloudbase-starter',
-        version: '1.0.0',
-        scripts: {
-          dev: 'stcb dev',
-          build: 'stcb build',
-          gen: 'stcb gen',
-          'deploy:dev': 'tcb fn deploy --force --mode dev ',
-          'deploy:prod': 'tcb fn deploy --force --mode prod',
-          'list:dev': 'tcb fn list --mode dev',
-          'list:prod': 'tcb fn list --mode prod',
-          'delete:dev': 'tcb fn delete --mode dev',
-          'delete:prod': 'tcb fn delete --mode prod'
-        },
-        dependencies: {
-          'wx-server-sdk': 'latest'
-        },
-        devDependencies: {
-          'simple-cloudbase': 'latest'
-        }
+    jsonStringify({
+      name: projectName || 'my-simple-cloudbase-starter',
+      version: '1.0.0',
+      scripts: {
+        dev: 'stcb dev',
+        build: 'stcb build',
+        gen: 'stcb gen',
+        'deploy:dev': 'tcb fn deploy --force --mode dev ',
+        'deploy:prod': 'tcb fn deploy --force --mode prod',
+        'list:dev': 'tcb fn list --mode dev',
+        'list:prod': 'tcb fn list --mode prod',
+        'delete:dev': 'tcb fn delete --mode dev',
+        'delete:prod': 'tcb fn delete --mode prod'
       },
-      null,
-      2
-    )
+      dependencies: {
+        'wx-server-sdk': 'latest'
+      },
+      devDependencies: {
+        'simple-cloudbase': 'latest'
+      }
+    })
   )
   await fsp.writeFile('./.env', '')
   await fsp.writeFile('./.env.dev', 'ENV_ID=[你的dev环境]')
@@ -40,8 +36,14 @@ async function copyAllTemplete (projectName?: string) {
   )
   await fsp.writeFile(
     './tsconfig.json',
-    JSON.stringify({
+    jsonStringify({
       compilerOptions: {
+        target: 'ES6',
+        module: 'commonjs',
+        strict: true,
+        esModuleInterop: true,
+        skipLibCheck: true,
+        forceConsistentCasingInFileNames: true,
         baseUrl: '.',
         paths: {
           '~/*': ['./src/*']
@@ -83,7 +85,7 @@ async function copyAllTemplete (projectName?: string) {
   )
   await fsp.writeFile(
     './src/common/simple.json',
-    JSON.stringify({
+    jsonStringify({
       ignore: true,
       externals: []
     })

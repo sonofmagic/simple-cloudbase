@@ -98,3 +98,7 @@ export const PickKeys = [
   'nodePaths',
   'watch'
 ]
+
+export function jsonStringify (value: any) {
+  return JSON.stringify(value, null, 2)
+}

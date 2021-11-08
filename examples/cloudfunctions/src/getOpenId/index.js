@@ -1,9 +1,8 @@
 // 云函数模板
 // 部署：在 cloud-functions/login 文件夹右击选择 “上传并部署”
+import cloud from '~/common/cloud'
 
-const cloud = require('~/common/cloud')
-
-exports.main = async (event, context) => {
+export async function main (event, context) {
   const wxContext = cloud.getWXContext()
 
   return {

@@ -1,12 +1,8 @@
 import cloud from '~/common/cloud'
 import _ from '~/common/db/command'
 import userCol from '~/common/db/collection/user'
-// import {
-//   FollowProjection,
-//   LikeProjection,
-//   StarProjection
-// } from '~/common/model/index'
-export async function main (event, context) {
+
+export async function main(event, context) {
   const wxContext = cloud.getWXContext()
   const { fields = [] } = event
 

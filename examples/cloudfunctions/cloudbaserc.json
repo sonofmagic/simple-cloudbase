@@ -1,0 +1,87 @@
+{
+  "version": "2.0",
+  "envId": "{{env.ENV_ID}}",
+  "functionRoot": "dist",
+  "functions": [
+    {
+      "name": "getList",
+      "installDependency": true,
+      "runtime": "Nodejs12.16",
+      "ignore": [
+        "*.md",
+        "node_modules",
+        "node_modules/**/*",
+        "**/*.map"
+      ],
+      "handler": "index.main",
+      "timeout": 20,
+      "envVariables": {
+        "TZ": "Asia/Shanghai"
+      }
+    },
+    {
+      "name": "getOpenId",
+      "installDependency": true,
+      "runtime": "Nodejs12.16",
+      "ignore": [
+        "*.md",
+        "node_modules",
+        "node_modules/**/*",
+        "**/*.map"
+      ],
+      "handler": "index.main",
+      "timeout": 20,
+      "envVariables": {
+        "TZ": "Asia/Shanghai"
+      }
+    },
+    {
+      "name": "getUserInfo",
+      "installDependency": true,
+      "runtime": "Nodejs12.16",
+      "ignore": [
+        "*.md",
+        "node_modules",
+        "node_modules/**/*",
+        "**/*.map"
+      ],
+      "handler": "index.main",
+      "timeout": 20,
+      "envVariables": {
+        "TZ": "Asia/Shanghai"
+      }
+    },
+    {
+      "name": "getWxacodeUnlimit",
+      "installDependency": true,
+      "runtime": "Nodejs12.16",
+      "ignore": [
+        "*.md",
+        "node_modules",
+        "node_modules/**/*",
+        "**/*.map"
+      ],
+      "handler": "index.main",
+      "timeout": 20,
+      "envVariables": {
+        "TZ": "Asia/Shanghai"
+      }
+    },
+    {
+      "name": "quickstartFunctions",
+      "installDependency": true,
+      "runtime": "Nodejs12.16",
+      "ignore": [
+        "*.md",
+        "node_modules",
+        "node_modules/**/*",
+        "**/*.map"
+      ],
+      "handler": "index.main",
+      "timeout": 20,
+      "envVariables": {
+        "TZ": "Asia/Shanghai"
+      }
+    }
+  ]
+}

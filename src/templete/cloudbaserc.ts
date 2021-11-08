@@ -1,4 +1,4 @@
-import { promises as fsp } from 'fs'
+import fs, { promises as fsp } from 'fs'
 import path from 'path'
 import type {
   ICloudBaseConfig,
@@ -47,7 +47,13 @@ export async function writeCloudbaserc (
   rootDir: string,
   distDir: string = 'dist'
 ) {
-  const functions = await getDeployFunctions(path.join(rootDir, distDir))
+  const targetDir = path.join(rootDir, distDir)
+  const isExisted = fs.existsSync(targetDir)
+  if (!isExisted) {
+    console.log(`[Error] 在目录下找不到 ${distDir} 文件夹，请 stcb dev 或 build 后重试`)
+    return
+  }
+  const functions = await getDeployFunctions(targetDir)
   const option = getBaseOption(distDir)
   option.functions = functions
   return await fsp.writeFile(

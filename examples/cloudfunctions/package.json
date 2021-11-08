@@ -12,7 +12,8 @@
     "list:dev": "tcb fn list --mode dev",
     "list:prod": "tcb fn list --mode prod",
     "delete:dev": "tcb fn delete --mode dev",
-    "delete:prod": "tcb fn delete --mode prod"
+    "delete:prod": "tcb fn delete --mode prod",
+    "clean": "node scripts/clean.js"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.3.0",
+    "del": "^6.0.0",
     "eslint": "7.12.1",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "2.22.1",

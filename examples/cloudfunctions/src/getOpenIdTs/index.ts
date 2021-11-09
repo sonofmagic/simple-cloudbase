@@ -6,9 +6,11 @@ exports.main = async (event: any, context: any) => {
 
   return {
     event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
-    env: wxContext.ENV
+    wxContext,
+    env: process.env
+    // openid: wxContext.OPENID,
+    // appid: wxContext.APPID,
+    // unionid: wxContext.UNIONID,
+    // env: wxContext.ENV
   }
 }

@@ -1,3 +1,21 @@
+function getJestGlobals (flag = true) {
+  return {
+    afterAll: flag,
+    afterEach: flag,
+    beforeAll: flag,
+    beforeEach: flag,
+    describe: flag,
+    expect: flag,
+    fit: flag,
+    it: flag,
+    jest: flag,
+    test: flag,
+    xdescribe: flag,
+    xit: flag,
+    xtest: flag
+  }
+}
+
 module.exports = {
   env: {
     es2021: true,
@@ -19,6 +37,8 @@ module.exports = {
 
   },
   globals: {
-    'jest/globals': true
+    // 为什么不起作用
+    // 'jest/globals': true,
+    ...getJestGlobals()
   }
 }

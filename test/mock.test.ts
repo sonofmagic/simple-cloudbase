@@ -2,7 +2,7 @@ import { mock as mockWxContext } from '../src/mock/wxContext'
 
 import { tsProjectPath, esmProjectPath, nativeProjectPath } from './util'
 import cloud from 'wx-server-sdk'
-describe('[mock](wxContext) test group', () => {
+describe('[Mock](wxContext) test group', () => {
   test('default test wxContext', async () => {
     const mockCtx = await mockWxContext({
       rootDir: tsProjectPath

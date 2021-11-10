@@ -40,4 +40,5 @@ export async function buildAll (opt: IBuildPathOption) {
     const option = options[i]
     console.log(`${option.name}:\n`, buildResultArray[i])
   }
+  return buildResultArray
 }

@@ -56,11 +56,12 @@ export async function writeCloudbaserc (
   const functions = await getDeployFunctions(targetDir)
   const option = getBaseOption(distDir)
   option.functions = functions
-  return await fsp.writeFile(
+  await fsp.writeFile(
     path.resolve(rootDir, 'cloudbaserc.json'),
     jsonStringify(option),
     {
       encoding: 'utf-8'
     }
   )
+  return option
 }

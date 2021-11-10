@@ -1,16 +1,24 @@
 import { initProject } from '../src/index'
-import { fixturesPath } from './util'
-import del from 'del'
-test('default init project', async () => {
-  process.chdir(fixturesPath)
-  let result = false
+import { fixturesPath, resolve, remove } from './util'
 
-  try {
-    await del(['happy'])
-    result = await initProject('happy')
-  } catch (error) {
-    result = false
-    console.error(error)
-  }
-  expect(result).toBe(true)
+describe('[Init] project', () => {
+  const projectName = 'happy'
+  const initProjectPath = resolve(fixturesPath, projectName)
+  beforeEach(async () => {
+    return await remove([initProjectPath])
+  })
+  test('default init project', async () => {
+    process.chdir(fixturesPath)
+    let result = false
+
+    try {
+      result = await initProject(projectName)
+    } catch (error) {
+      result = false
+      console.error(error)
+    }
+    expect(result).toBe(true)
+    const pkg = require(resolve(initProjectPath, 'package.json'))
+    expect(pkg.name).toBe(projectName)
+  })
 })

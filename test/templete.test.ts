@@ -1,34 +1,40 @@
-import { writeCloudbaserc } from '../src/templete/cloudbaserc'
-import { nativeProjectPath } from './util'
-import path from 'path'
-import fs, { promises as fsp } from 'fs'
-import type {
-  ICloudBaseConfig
-  // ICloudFunction
-} from '@cloudbase/cli/types/types'
+import { writeCloudbaserc } from '../src'
+import {
+  nativeProjectPath,
+  remove,
+  fsExists,
+  nativeProjectCloudbasercPath
+} from './util'
+import { promises as fsp } from 'fs'
+import type { ICloudBaseConfig } from '@cloudbase/cli/types/types'
 
-describe('templete functions test', () => {
+describe('[Templete](cloudbaserc) functions test', () => {
+  // beforeAll(async () => {
+  //   return await del([nativeProjectCloudbasercPath])
+  // })
+  beforeEach(async () => {
+    return await remove([nativeProjectCloudbasercPath])
+  })
+
   test('generate cloudbaserc.json templete ', async () => {
-    await writeCloudbaserc(nativeProjectPath, 'src')
-    const flag = fs.existsSync(
-      path.resolve(nativeProjectPath, 'cloudbaserc.json')
-    )
-    expect(flag).toBe(true)
+    expect(fsExists(nativeProjectCloudbasercPath)).toBe(false)
+    const option = await writeCloudbaserc(nativeProjectPath)
+    expect(fsExists(nativeProjectCloudbasercPath)).toBe(true)
+    expect(option!.version).toBe('2.0')
   })
 
   test('[simple.json] ignore', async () => {
-    await writeCloudbaserc(nativeProjectPath, 'src')
-    const jsonPath = path.resolve(nativeProjectPath, 'cloudbaserc.json')
-    const flag = fs.existsSync(jsonPath)
-    if (flag) {
-      const config: ICloudBaseConfig = JSON.parse(
-        await fsp.readFile(jsonPath, {
-          encoding: 'utf-8'
-        })
-      )
-      expect(
-        config.functions!.findIndex((x) => x.name === 'ignoreFn') === -1
-      ).toBe(true)
-    }
+    expect(fsExists(nativeProjectCloudbasercPath)).toBe(false)
+    const config = await writeCloudbaserc(nativeProjectPath)
+    expect(fsExists(nativeProjectCloudbasercPath)).toBe(true)
+    expect(config!.version).toBe('2.0')
+    const readedConfig: ICloudBaseConfig = JSON.parse(
+      await fsp.readFile(nativeProjectCloudbasercPath, {
+        encoding: 'utf-8'
+      })
+    )
+    expect(
+      readedConfig.functions!.findIndex((x) => x.name === 'ignoreFn') === -1
+    ).toBe(true)
   })
 })

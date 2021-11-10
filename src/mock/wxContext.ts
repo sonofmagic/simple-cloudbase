@@ -1,5 +1,5 @@
 import type { ICloud } from 'wx-server-sdk'
-import { resolve } from '../util'
+import { resolve, log } from '../util'
 import fs from 'fs'
 
 type WXContext = ICloud.WXContext
@@ -48,6 +48,6 @@ export async function mock (params: IMockWXContextParams) {
     setProcessEnv(mockData)
     return mockData
   } catch (error) {
-    console.error(error)
+    log.error(error)
   }
 }

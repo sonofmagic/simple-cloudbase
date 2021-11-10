@@ -2,6 +2,7 @@ import { Command } from 'commander'
 import { writeCloudbaserc } from './templete/cloudbaserc'
 import { buildAll, initProject } from './index'
 import { setDev, setProd } from './env'
+import { log } from './util'
 const { version } = require('../package.json')
 const program = new Command()
 program.version(version)
@@ -17,7 +18,7 @@ program
       distDir = args.Dir
     }
     await writeCloudbaserc(cwd, distDir)
-    console.log('Successfully generate cloudbaserc.json')
+    log.success('Successfully generate cloudbaserc.json !')
   })
 
 program

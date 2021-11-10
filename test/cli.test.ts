@@ -1,29 +1,22 @@
 import execa from 'execa'
 import {
   STCB_EXECUTABLE_PATH,
-  nativeProjectPath,
   esmProjectPath,
   fixturesPath,
   fsExists,
   resolve,
   remove,
   esmProjectCloudbasercPath,
-  nativeProjectCloudbasercPath,
-  esmdist,
-  nativedist
+  esmdist
 } from './util'
 
 describe('[CLI] ', () => {
-  beforeEach(async () => {
-    return await remove([
-      nativeProjectCloudbasercPath,
-      esmProjectCloudbasercPath,
-      esmdist,
-      nativedist
-    ])
-  })
+  // beforeEach(async () => {
+  //   return await remove([nativeProjectCloudbasercPath, nativedist])
+  // })
   test('[Generate](ESM) custom option cli generate cloudbaserc.json ', async () => {
     process.chdir(esmProjectPath)
+    await remove(esmProjectCloudbasercPath)
     expect(fsExists(esmProjectCloudbasercPath)).toBe(false)
     await execa(STCB_EXECUTABLE_PATH, ['gen', '-dir', 'src']) // .stdout?.pipe(process.stdout)
     expect(fsExists(esmProjectCloudbasercPath)).toBe(true)
@@ -31,6 +24,7 @@ describe('[CLI] ', () => {
 
   test('[Build](ESM) default build all ', async () => {
     process.chdir(esmProjectPath)
+    await remove(esmdist)
     expect(fsExists(esmdist)).toBe(false)
     await execa(STCB_EXECUTABLE_PATH, ['build']) // .stdout?.pipe(process.stdout)
     expect(fsExists(esmdist)).toBe(true)
@@ -38,6 +32,7 @@ describe('[CLI] ', () => {
 
   test('[Build](ESM) default build all with params', async () => {
     process.chdir(esmProjectPath)
+    await remove(esmdist)
     expect(fsExists(esmdist)).toBe(false)
     await execa(STCB_EXECUTABLE_PATH, [
       'build',
@@ -63,11 +58,11 @@ describe('[CLI] ', () => {
     }
   })
 
-  test('[Dev] default dev mode', async () => {
-    process.chdir(nativeProjectPath)
-    expect(fsExists(nativedist)).toBe(false)
-    await execa(STCB_EXECUTABLE_PATH, ['dev']) // .stdout?.pipe(process.stdout)
-    expect(fsExists(nativedist)).toBe(true)
-    // process.kill(process.pid)
-  })
+  // test('[Dev] default dev mode', async () => {
+  //   process.chdir(nativeProjectPath)
+  //   expect(fsExists(nativedist)).toBe(false)
+  //   await execa(STCB_EXECUTABLE_PATH, ['dev']) // .stdout?.pipe(process.stdout)
+  //   expect(fsExists(nativedist)).toBe(true)
+  //   // process.kill(process.pid)
+  // })
 })

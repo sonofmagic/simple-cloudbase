@@ -1,3 +1,4 @@
 export * from './buildAll'
 export * from './init'
-export * from './templete/cloudbaserc'
+export * from './templete'
+export * from './mock'

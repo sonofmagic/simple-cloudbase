@@ -1,20 +1,26 @@
-import { getFunctions, PickKeys, copyConfigJson, resolve } from './util'
+import { getFunctions, PickKeys, copyConfigJson, resolve, log } from './util'
 import { build } from './build/index'
 import { mergeDefaultConfig } from './build/defaults'
 import type { BuildOptions, BuildResult } from 'esbuild'
 import pick from 'lodash/pick'
 export interface IBuildPathOption {
   rootdir: string
-  srcdir: string
-  outdir: string
+  srcdir?: string
+  outdir?: string
   watch?: boolean
 }
 
 export async function buildAll (opt: IBuildPathOption) {
+  if (!opt.srcdir) {
+    opt.srcdir = 'src'
+  }
+  if (!opt.outdir) {
+    opt.outdir = 'dist'
+  }
   const options = await getFunctions(resolve(opt.rootdir, opt.srcdir))
   const buildResultArray = await Promise.all(
     options.reduce<Promise<BuildResult>[]>((acc, cur) => {
-      const outdir = resolve(opt.rootdir, opt.outdir, cur.name)
+      const outdir = resolve(opt.rootdir, opt.outdir as string, cur.name)
       const fnOpt: Partial<BuildOptions> = {
         entryPoints: [resolve(cur.path, 'index')],
         outfile: resolve(outdir, 'index.js')
@@ -38,7 +44,23 @@ export async function buildAll (opt: IBuildPathOption) {
   )
   for (let i = 0; i < buildResultArray.length; i++) {
     const option = options[i]
-    console.log(`${option.name}:\n`, buildResultArray[i])
+    const buildResult = buildResultArray[i]
+
+    log.success(`${option.name}:`)
+    const warnings = buildResult.warnings
+    if (warnings.length) {
+      log.warn('warnings:')
+      for (let j = 0; j < warnings.length; j++) {
+        log.warn(warnings[j])
+      }
+    }
+    const errors = buildResult.errors
+    if (errors.length) {
+      log.error('errors:')
+      for (let k = 0; k < errors.length; k++) {
+        log.error(errors[k])
+      }
+    }
   }
   return buildResultArray
 }

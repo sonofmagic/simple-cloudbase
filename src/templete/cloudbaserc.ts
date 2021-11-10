@@ -4,7 +4,7 @@ import type {
   ICloudBaseConfig,
   ICloudFunction
 } from '@cloudbase/cli/types/types'
-import { getFunctions, jsonStringify } from '../util'
+import { getFunctions, jsonStringify, log } from '../util'
 
 export interface ISimpleJsonConfig {
   ignore?: boolean
@@ -50,7 +50,7 @@ export async function writeCloudbaserc (
   const targetDir = path.join(rootDir, distDir)
   const isExisted = fs.existsSync(targetDir)
   if (!isExisted) {
-    console.log(`[Error] 在目录下找不到 ${distDir} 文件夹，请 stcb dev 或 build 后重试`)
+    log.error(`在目录下找不到 ${distDir} 文件夹，请 stcb dev 或 build 后重试`)
     return
   }
   const functions = await getDeployFunctions(targetDir)

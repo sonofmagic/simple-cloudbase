@@ -1,6 +1,6 @@
 import { promises as fsp } from 'fs'
 
-import { resolve, jsonStringify } from './util'
+import { resolve, jsonStringify, log } from './util'
 
 async function copyAllTemplete (projectName?: string) {
   await fsp.writeFile(
@@ -100,13 +100,13 @@ export async function initProject (name?: string) {
       process.chdir(path)
     }
     await copyAllTemplete(name)
-    console.log(`初始化云开发项目${name || ''}成功`)
+    log.success(`初始化云开发项目${name || ''}成功`)
     return true
   } catch (error) {
     if (error.code === 'EEXIST') {
-      console.error(`已存在目录:${error.path},请重新指定目录名`)
+      log.error(`已存在目录:${error.path},请重新指定目录名`)
     } else {
-      console.error(error)
+      log.error(error)
     }
     return false
   }

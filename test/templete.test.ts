@@ -1,4 +1,4 @@
-import { writeCloudbaserc } from '../src'
+import { writeCloudbaserc, buildAll } from '../src'
 import {
   nativeProjectPath,
   remove,
@@ -18,6 +18,9 @@ describe('[Templete](cloudbaserc) functions test', () => {
 
   test('generate cloudbaserc.json templete ', async () => {
     expect(fsExists(nativeProjectCloudbasercPath)).toBe(false)
+    await buildAll({
+      rootdir: nativeProjectPath
+    })
     const option = await writeCloudbaserc(nativeProjectPath)
     expect(fsExists(nativeProjectCloudbasercPath)).toBe(true)
     expect(option!.version).toBe('2.0')
@@ -25,6 +28,9 @@ describe('[Templete](cloudbaserc) functions test', () => {
 
   test('[simple.json] ignore', async () => {
     expect(fsExists(nativeProjectCloudbasercPath)).toBe(false)
+    await buildAll({
+      rootdir: nativeProjectPath
+    })
     const config = await writeCloudbaserc(nativeProjectPath)
     expect(fsExists(nativeProjectCloudbasercPath)).toBe(true)
     expect(config!.version).toBe('2.0')

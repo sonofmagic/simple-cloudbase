@@ -1,6 +1,8 @@
 import fs, { promises as fsp } from 'fs'
 import path from 'path'
+import consola from 'consola'
 
+export const log = consola
 export interface ISimpleJsonConfig {
   ignore?: boolean
   externals?: []
@@ -42,9 +44,7 @@ export async function getFunctions (distPath: string) {
           }
           // true then ignore it
         } catch (error) {
-          console.warn(
-            `fail to parse ${cur}/simple.json as JSON , so ignore it`
-          )
+          log.warn(`fail to parse ${cur}/simple.json as JSON , so ignore it`)
           acc.push(item)
         }
       } else {

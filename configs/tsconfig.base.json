@@ -2,7 +2,7 @@
   "compilerOptions": {
     "skipLibCheck": true,
     "declaration": true,
-    "declarationMap": true,
+    "declarationMap": false,
     "noImplicitAny": true,
     "noEmitOnError": false,
     "noImplicitThis": true,

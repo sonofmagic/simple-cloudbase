@@ -41,7 +41,7 @@
   },
   "homepage": "https://cloudbase.icebreaker.top",
   "devDependencies": {
-    "@cloudbase/cli": "^1.9.2",
+    "@cloudbase/cli": "^1.9.7",
     "@types/jest": "^27.0.2",
     "@types/lodash": "^4.14.176",
     "@types/node": "^16.11.7",
@@ -50,12 +50,13 @@
     "del": "^6.0.0",
     "eslint": "^8.2.0",
     "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jest": "^25.2.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.1",
     "execa": "^5.1.1",
     "jest": "^27.3.1",
+    "simple-cloudbase-router": "^0.0.1",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0",
     "wx-server-sdk": "^2.5.3"
@@ -63,7 +64,7 @@
   "dependencies": {
     "commander": "^8.3.0",
     "consola": "^2.15.3",
-    "esbuild": "^0.13.12",
+    "esbuild": "^0.13.13",
     "lodash": "^4.17.21"
   },
   "publishConfig": {

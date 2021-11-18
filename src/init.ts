@@ -24,7 +24,8 @@ async function copyAllTemplete (projectName?: string) {
       },
       devDependencies: {
         'simple-cloudbase': 'latest'
-      }
+      },
+      license: 'MIT'
     })
   )
   await fsp.writeFile('./.env', '')
@@ -77,9 +78,10 @@ async function copyAllTemplete (projectName?: string) {
     `import cloud from 'wx-server-sdk'
 
     export function cloudInit (env?: string) {
-      return cloud.init({
-        env: env || (cloud.DYNAMIC_CURRENT_ENV as unknown)
+      cloud.init({
+        env: env ?? (cloud.DYNAMIC_CURRENT_ENV as unknown as string)
       })
+      return cloud
     }
   `
   )

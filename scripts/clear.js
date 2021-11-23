@@ -1,5 +1,5 @@
 const del = require('del')
 
   ; (async () => {
-  await del(['lib'])
+  await del(['lib', 'tsconfig.build.tsbuildinfo'])
 })()

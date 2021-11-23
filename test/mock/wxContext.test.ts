@@ -1,6 +1,6 @@
-import { mock as mockWxContext } from '../src/mock/wxContext'
+import { mock as mockWxContext } from '../../src/mock/wxContext'
 
-import { tsProjectPath, esmProjectPath, nativeProjectPath } from './util'
+import { tsProjectPath, esmProjectPath, nativeProjectPath } from '../util'
 import cloud from 'wx-server-sdk'
 describe('[Mock](wxContext) test group', () => {
   test('default test wxContext', async () => {

@@ -1,13 +1,13 @@
 {
   "name": "simple-cloudbase",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "a simple toolkit for cloudbase,which aims to improve wechat miniprogram developing experience",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "watch": "tsc -w",
-    "test": "jest",
+    "test": "yarn build && jest",
     "debug:stcb": "node bin/stcb",
     "publish:npm": "yarn publish",
     "clear": "node scripts/clear.js",

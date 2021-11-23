@@ -11,7 +11,8 @@
     "debug:stcb": "node bin/stcb",
     "publish:npm": "yarn publish",
     "clear": "node scripts/clear.js",
-    "raw": "node --require ts-node/register ./test/raw.ts"
+    "raw": "node --require ts-node/register ./test/raw.ts",
+    "test:codecov": "jest && codecov"
   },
   "files": [
     "bin",

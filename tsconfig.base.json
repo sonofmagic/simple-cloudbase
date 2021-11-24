@@ -3,12 +3,13 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "baseUrl": ".",
+    "rootDir": "src",
     "paths": {
       "@/*": ["src/*"]
     },
-    "outDir": "lib",
+    "outDir": "dist",
     "declaration": true,
-    "resolveJsonModule": true
+    "declarationDir": "dist/types"
   },
   "exclude": ["node_modules", "dist", "test/fixtures"]
 }

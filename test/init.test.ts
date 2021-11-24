@@ -1,4 +1,4 @@
-import { initProject } from '../src/index'
+import { initProject } from '@/index'
 import { fixturesPath, resolve, remove } from './util'
 
 describe('[Init] project', () => {

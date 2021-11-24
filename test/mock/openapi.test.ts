@@ -1,4 +1,4 @@
-import { mock } from '../../src/mock/openapi'
+import { mock } from '@/mock/openapi'
 
 import cloud from 'wx-server-sdk'
 

@@ -1,4 +1,4 @@
-import { buildAll } from '../src/index'
+import { buildAll } from '@/index'
 import {
   esmProjectPath,
   nativeProjectPath,

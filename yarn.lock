@@ -1232,6 +1232,11 @@
   resolved "https://registry.nlark.com/@tsconfig/node16/download/@tsconfig/node16-1.0.2.tgz#423c77877d0569db20e1fc80885ac4118314010e"
   integrity sha1-Qjx3h30Fadsg4fyAiFrEEYMUAQ4=
 
+"@tsconfig/recommended@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.nlark.com/@tsconfig/recommended/download/@tsconfig/recommended-1.0.1.tgz#7619bad397e06ead1c5182926c944e0ca6177f52"
+  integrity sha1-dhm605fgbq0cUYKSbJRODKYXf1I=
+
 "@types/accepts@*":
   version "1.3.5"
   resolved "https://registry.npmmirror.com/@types/accepts/download/@types/accepts-1.3.5.tgz?cache=0&sync_timestamp=1637265968432&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40types%2Faccepts%2Fdownload%2F%40types%2Faccepts-1.3.5.tgz#c34bec115cfc746e04fe5a059df4ce7e7b391575"

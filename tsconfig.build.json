@@ -1,15 +1,7 @@
 {
-  "extends": "./configs/tsconfig.base",
+  "extends": "./tsconfig.base",
   "compilerOptions": {
-    "sourceMap": false,
-    "esModuleInterop": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "composite": true,
-    "rootDir": "src",
-    "outDir": "lib"
+    "sourceMap": false
   },
   "include": ["src"]
 }

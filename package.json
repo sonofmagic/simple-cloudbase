@@ -1,6 +1,6 @@
 {
   "name": "simple-cloudbase",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "a simple toolkit for cloudbase,which aims to improve wechat miniprogram developing experience",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
@@ -16,7 +16,7 @@
   },
   "files": [
     "bin",
-    "lib"
+    "dist"
   ],
   "bin": {
     "stcb": "bin/stcb"
@@ -71,6 +71,7 @@
     "simple-cloudbase-router": "^0.1.0",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0",
+    "tslib": "^2.3.1",
     "wx-server-sdk": "^2.5.3"
   },
   "dependencies": {

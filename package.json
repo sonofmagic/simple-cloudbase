@@ -1,6 +1,6 @@
 {
   "name": "simple-cloudbase",
-  "version": "0.1.9",
+  "version": "0.2.0-beta.1",
   "description": "a simple toolkit for cloudbase,which aims to improve wechat miniprogram developing experience",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
@@ -10,7 +10,6 @@
     "watch": "tsc -w -p tsconfig.build.json --sourcemap",
     "test": "yarn build && jest",
     "debug:stcb": "node bin/stcb",
-    "publish:npm": "yarn publish",
     "clear": "node scripts/clear.js",
     "raw": "node --require ts-node/register ./test/raw.ts",
     "test:codecov": "tsc -p . --sourcemap && jest && codecov"
@@ -43,19 +42,20 @@
   },
   "homepage": "https://cloudbase.icebreaker.top",
   "devDependencies": {
+    "@cloudbase/cli": "^1.9.9",
     "@rollup/plugin-alias": "^3.1.8",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-typescript": "^8.3.0",
-    "rollup": "^2.60.0",
-    "@cloudbase/cli": "^1.9.9",
     "@tsconfig/recommended": "^1.0.1",
     "@types/jest": "^27.0.3",
     "@types/lodash": "^4.14.177",
     "@types/node": "^16.11.9",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
+    "commander": "^8.3.0",
+    "consola": "^2.15.3",
     "del": "^6.0.0",
     "dotenv": "^10.0.0",
     "eslint": "^8.3.0",
@@ -66,13 +66,12 @@
     "eslint-plugin-promise": "^5.1.1",
     "execa": "^5.0.0",
     "jest": "^27.3.1",
+    "lodash": "^4.17.21",
+    "rollup": "^2.60.0",
     "simple-cloudbase-router": "^0.1.0",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0",
-    "wx-server-sdk": "^2.5.3",
-    "lodash": "^4.17.21",
-    "commander": "^8.3.0",
-    "consola": "^2.15.3"
+    "wx-server-sdk": "^2.5.3"
   },
   "dependencies": {
     "esbuild": "^0.13.15"

@@ -1,4 +1,4 @@
-import { writeCloudbaserc, buildAll } from '../src'
+import { writeCloudbaserc, buildAll } from '@/index'
 import {
   nativeProjectPath,
   remove,

@@ -1,6 +1,6 @@
-import { initProject } from '../src/init'
+import { initProject } from '@/init'
 import { fixturesPath } from './util'
-;(async () => {
+(async () => {
   try {
     process.chdir(fixturesPath)
     await initProject('new-boy-start')

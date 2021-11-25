@@ -15,8 +15,15 @@ function createContext ():IBaseContext {
   }
 }
 
-function getResolveData<T> (target:T, ctx:IBaseContext, ...args:any[]) {
-  const path = ctx.invokePath.join('.')
+export interface IDefaultResponse{
+  errCode:number
+  errMsg:string
+  invokePath:string
+  target:any
+  args:any[]
+}
+
+function getDefaultResponse (path:string, target:any, args:any[]):IDefaultResponse {
   return {
     errCode: 0,
     errMsg: 'Mock Api',
@@ -26,15 +33,39 @@ function getResolveData<T> (target:T, ctx:IBaseContext, ...args:any[]) {
   }
 }
 
-function createFuncByTarget<T> (target:T, ctx:IBaseContext) {
-  return function (...args:any[]) {
-    return Promise.resolve(getResolveData(target, ctx, ...args))
-  }
+export interface ICreateProxyOptions{
+  /**
+   * @default ()=>
+   * errCode: 0,
+   * errMsg: 'Mock Api',
+   * invokePath: path,
+   * target,
+   * args
+   */
+  handler?:(path:string, target:any, getDefaultRes:()=>IDefaultResponse)=> any
 }
 
-function createProxy<T extends AnyObject> (openapi: AnyObject = {}) {
-  function createGetHandle () {
-    return function get (target:T, prop:UnionProp, receiver:any, ctx:IBaseContext) {
+export function createProxy<T extends AnyObject> (obj: AnyObject = {}, options?:ICreateProxyOptions) {
+  const { handler } = options ?? {}
+
+  function createFuncByTarget<T> (target:T, ctx:IBaseContext) {
+    return function (...args:any[]) {
+      const path = ctx.invokePath.join('.')
+      if (handler) {
+        if (typeof handler === 'function') {
+          return handler(path, target, () => {
+            return getDefaultResponse(path, target, args)
+          })
+        } else {
+          throw new TypeError('handler must be a function !')
+        }
+      }
+      return getDefaultResponse(path, target, args)
+    }
+  }
+
+  function createGetHandler () {
+    return function handler (target:T, prop:UnionProp, receiver:any, ctx:IBaseContext) {
       ctx.invokePath.push(prop)
       const tmp = target ? target[prop as string] ?? {} : target
       const wrapFunc = createFuncByTarget<T>(tmp, ctx)
@@ -42,7 +73,7 @@ function createProxy<T extends AnyObject> (openapi: AnyObject = {}) {
     }
   }
 
-  const get = createGetHandle()
+  const get = createGetHandler()
 
   function getProxy (parent: T, prop: UnionProp, ctx:IBaseContext): T {
     const proxy = new Proxy(parent, {
@@ -53,7 +84,7 @@ function createProxy<T extends AnyObject> (openapi: AnyObject = {}) {
     return proxy
   }
 
-  return new Proxy(openapi, {
+  return new Proxy(obj, {
     get (target:T, prop:UnionProp, receiver:any) {
       const ctx = createContext()
       return get(target, prop, receiver, ctx)
@@ -61,13 +92,9 @@ function createProxy<T extends AnyObject> (openapi: AnyObject = {}) {
   })
 }
 
-function getOpenapiProxy (openapi: Record<string, any> = {}) {
-  // highjack
-  return createProxy(openapi)
-}
-
 export function mock (cloud: typeof Cloud) {
   // @ts-ignore
-  cloud.openapi = getOpenapiProxy()
+  // highjack
+  cloud.openapi = createProxy(cloud.openapi)
   return cloud
 }

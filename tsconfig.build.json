@@ -2,6 +2,7 @@
   "extends": "./tsconfig.base",
   "compilerOptions": {
     "sourceMap": false,
+    "rootDir": "src",
     "rootDirs": ["src"]
   },
   "include": ["src"]

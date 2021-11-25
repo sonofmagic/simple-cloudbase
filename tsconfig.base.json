@@ -3,7 +3,7 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "baseUrl": ".",
-    "rootDir": "src",
+    "rootDirs": ["src", "test"],
     "paths": {
       "@/*": ["src/*"]
     },

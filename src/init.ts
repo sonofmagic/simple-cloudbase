@@ -1,5 +1,5 @@
 import { promises as fsp } from 'fs'
-
+import { commonInitRaw, getOpenIdRaw } from './templete/init'
 import { resolve, jsonStringify, log } from './util'
 
 async function copyAllTemplete (projectName?: string) {
@@ -57,33 +57,12 @@ async function copyAllTemplete (projectName?: string) {
   await fsp.mkdir('./src/getOpenId')
   await fsp.writeFile(
     './src/getOpenId/index.ts',
-    `import { cloudInit } from '~/common/init'
-
-    const cloud = cloudInit()
-    
-    export async function main (event, context) {
-      const wxContext = cloud.getWXContext()
-    
-      return {
-        openid: wxContext.OPENID,
-        appid: wxContext.APPID,
-        unionid: wxContext.UNIONID
-      }
-    }
-  `
+    getOpenIdRaw
   )
   await fsp.mkdir('./src/common')
   await fsp.writeFile(
     './src/common/init.ts',
-    `import cloud from 'wx-server-sdk'
-
-    export function cloudInit (env?: string) {
-      cloud.init({
-        env: env ?? (cloud.DYNAMIC_CURRENT_ENV as unknown as string)
-      })
-      return cloud
-    }
-  `
+    commonInitRaw
   )
   await fsp.writeFile(
     './src/common/simple.json',

@@ -23,5 +23,7 @@ describe('[Mock](openapi) test group', () => {
     expect(res2.errCode).toBe(0)
     expect(res2.invokePath).toBe('search.aaa.imageSearch')
     expect(res2.args[0]).toEqual(params)
+    const res3 = await cloud.openapi.a[1]['12'](params)
+    expect(res3.invokePath).toBe('a.1.12')
   })
 })

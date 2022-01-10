@@ -7,7 +7,9 @@ import {
   resolve,
   remove,
   esmProjectCloudbasercPath,
-  esmdist
+  esmdist,
+  nativeProjectPath,
+  nativedist
 } from './util'
 
 describe('[CLI] ', () => {
@@ -58,11 +60,21 @@ describe('[CLI] ', () => {
     }
   })
 
-  // test('[Dev] default dev mode', async () => {
-  //   process.chdir(nativeProjectPath)
-  //   expect(fsExists(nativedist)).toBe(false)
-  //   await execa(STCB_EXECUTABLE_PATH, ['dev']) // .stdout?.pipe(process.stdout)
-  //   expect(fsExists(nativedist)).toBe(true)
-  //   // process.kill(process.pid)
-  // })
+  test('[Dev] default dev mode', async () => {
+    process.chdir(nativeProjectPath)
+    await remove(nativedist)
+    expect(fsExists(nativedist)).toBe(false)
+    await execa(STCB_EXECUTABLE_PATH, ['dev']) // .stdout?.pipe(process.stdout)
+    expect(fsExists(nativedist)).toBe(true)
+    // process.kill(process.pid)
+  })
+
+  test('[Dev] dev watch mode', async () => {
+    process.chdir(nativeProjectPath)
+    await remove(nativedist)
+    expect(fsExists(nativedist)).toBe(false)
+    await execa(STCB_EXECUTABLE_PATH, ['dev', '-W']) // .stdout?.pipe(process.stdout)
+    expect(fsExists(nativedist)).toBe(true)
+    // process.kill(process.pid)
+  })
 })

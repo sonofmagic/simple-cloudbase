@@ -3,7 +3,8 @@ import { nodeResolve } from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import pkg from './package.json'
 
-/** @type {import('rollup').RollupDirOptions} */
+const openSourceMap = Boolean(process.env.SOURCEMAP)
+/** @type {import('rollup').RollupOptions} */
 const config = {
   input: {
     index: 'src/index.ts',
@@ -11,11 +12,12 @@ const config = {
   },
   output: {
     dir: 'dist',
-    format: 'cjs'
+    format: 'cjs',
+    sourcemap: openSourceMap
   },
 
   plugins: [
-    typescript({ tsconfig: './tsconfig.build.json' }),
+    typescript({ tsconfig: './tsconfig.build.json', sourceMap: openSourceMap }),
     nodeResolve({
       preferBuiltins: true
     }),

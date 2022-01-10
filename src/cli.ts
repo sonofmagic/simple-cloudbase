@@ -42,15 +42,17 @@ program
   .description('build and watch scf')
   .option('-srcdir [path]', 'the src functions dir')
   .option('-outdir [path]', 'the output functions dir')
+  .option('-W, --watch', 'enable watch mode')
   .action(async (args) => {
     const Outdir = args.Outdir
     const Srcdir = args.Srcdir
+    const watch = args.watch
     setDev()
     await buildAll({
       outdir: Outdir || 'dist',
       rootdir: cwd,
       srcdir: Srcdir || 'src',
-      watch: true
+      watch
     })
   })
 

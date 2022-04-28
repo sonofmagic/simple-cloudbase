@@ -1,8 +1,7 @@
+import { config } from 'dotenv';
 
-import { config } from 'dotenv'
+config();
 
-config()
+process.env.NODE_ENV = 'development';
 
-process.env.NODE_ENV = 'development'
-
-jest.setTimeout(30000)
+jest.setTimeout(30000);

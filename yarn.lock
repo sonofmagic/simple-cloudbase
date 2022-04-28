@@ -11009,6 +11009,11 @@ triple-beam@^1.2.0, triple-beam@^1.3.0:
   resolved "https://registry.npm.taobao.org/triple-beam/download/triple-beam-1.3.0.tgz#a595214c7298db8339eeeee083e4d10bd8cb8dd9"
   integrity sha1-pZUhTHKY24M57u7gg+TRC9jLjdk=
 
+ts-dedent@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.npmmirror.com/ts-dedent/-/ts-dedent-2.2.0.tgz#39e4bd297cd036292ae2394eb3412be63f563bb5"
+  integrity sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==
+
 ts-jest@^27.1.4:
   version "27.1.4"
   resolved "https://registry.npmmirror.com/ts-jest/-/ts-jest-27.1.4.tgz#84d42cf0f4e7157a52e7c64b1492c46330943e00"

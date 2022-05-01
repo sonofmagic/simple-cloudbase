@@ -1,5 +1,7 @@
 # simple-cloudbase
 
+> 微信云开发的收费模式，即将迎来调整，添加了最低月费和按DAU收费，这背离了 serverless 的初衷
+
 这是一个为微信云开发定制的框架,结合 `@cloudbase/cli`使用来完成云函数的工程化
 
 [**文档在此**](https://cloudbase.icebreaker.top/)

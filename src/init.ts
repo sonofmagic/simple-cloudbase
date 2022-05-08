@@ -69,7 +69,7 @@ async function copyAllTemplete(dest: string, projectName?: string) {
     r('./src/common/simple.json'),
     jsonStringify({
       ignore: true,
-      externals: [],
+      external: [],
     })
   );
 }

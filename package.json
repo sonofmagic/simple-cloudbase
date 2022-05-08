@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
+    "dev": "yarn clear && cross-env SOURCEMAP=1 rollup -cw",
     "build": "yarn clear && rollup -c",
-    "build:map": "yarn clear && cross-env SOURCEMAP=1 rollup -c",
     "build:tsc": "tsc -p tsconfig.build.json",
     "watch": "tsc -w -p tsconfig.build.json --sourcemap",
     "test": "yarn build && jest",

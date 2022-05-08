@@ -8,7 +8,7 @@ import { getFunctions, jsonStringify, log } from '../util'
 
 export interface ISimpleJsonConfig {
   ignore?: boolean
-  externals?: []
+  external?: []
 }
 
 export const baseOption: ICloudBaseConfig & { version: string } = {

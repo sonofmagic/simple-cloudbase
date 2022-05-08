@@ -1,20 +1,8 @@
 import fs, { promises as fsp } from 'fs'
 import path from 'path'
 import consola from 'consola'
-
+import type { IBuiltinOption, ISimpleJsonConfig } from './type'
 export const log = consola
-export interface ISimpleJsonConfig {
-  ignore?: boolean
-  externals?: []
-}
-
-export type IBuiltinOption = {
-  path: string
-  name: string
-  extra?: ISimpleJsonConfig & {
-    [key: string]: any
-  }
-}
 
 export function resolve (...pathSegments: string[]) {
   return path.resolve(...pathSegments)

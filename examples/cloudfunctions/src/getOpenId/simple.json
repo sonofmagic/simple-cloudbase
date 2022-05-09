@@ -1,3 +1,0 @@
-{
-  "external": ["dayjs", "lodash", "wx-server-sdk"]
-}

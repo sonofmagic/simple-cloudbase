@@ -2,6 +2,8 @@ import fs, { promises as fsp } from 'fs'
 import path from 'path'
 import consola from 'consola'
 import type { IBuiltinOption, ISimpleJsonConfig } from './type'
+
+const PKG_KEY = 'package.json'
 export const log = consola
 
 export function resolve (...pathSegments: string[]) {
@@ -52,12 +54,19 @@ export async function copyConfigJson (srcDir: string, outDir: string) {
     await fsp.copyFile(srcPath, outPath)
   }
 }
-export async function copyPkgDeps (pkg: any, outDir: string) {
-  const filename = 'package.json'
 
+export function tryParsePkgJson (funDir: string) {
+  try {
+    return require(resolve(funDir, PKG_KEY))
+  } catch (error) {
+    return null
+  }
+}
+
+export async function copyPkgDeps (pkg: any, outDir: string) {
   await fsp.writeFile(
-    path.resolve(outDir, filename),
-    JSON.stringify(pkg, null, 2),
+    path.resolve(outDir, PKG_KEY),
+    jsonStringify(pkg),
     'utf-8'
   )
 }

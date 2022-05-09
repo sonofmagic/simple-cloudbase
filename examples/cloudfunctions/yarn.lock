@@ -882,14 +882,6 @@ eslint-module-utils@^2.7.3:
     debug "^3.2.7"
     find-up "^2.1.0"
 
-eslint-plugin-es@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.nlark.com/eslint-plugin-es/download/eslint-plugin-es-3.0.1.tgz#75a7cdfdccddc0589934aeeb384175f221c57893"
-  integrity sha1-dafN/czdwFiZNK7rOEF18iHFeJM=
-  dependencies:
-    eslint-utils "^2.0.0"
-    regexpp "^3.0.0"
-
 eslint-plugin-es@^4.1.0:
   version "4.1.0"
   resolved "https://registry.npmmirror.com/eslint-plugin-es/-/eslint-plugin-es-4.1.0.tgz#f0822f0c18a535a97c3e714e89f88586a7641ec9"
@@ -930,18 +922,6 @@ eslint-plugin-n@^15.2.0:
     minimatch "^3.0.4"
     resolve "^1.10.1"
     semver "^6.3.0"
-
-eslint-plugin-node@11.1.0:
-  version "11.1.0"
-  resolved "https://registry.nlark.com/eslint-plugin-node/download/eslint-plugin-node-11.1.0.tgz?cache=0&sync_timestamp=1618847137103&other_urls=https%3A%2F%2Fregistry.nlark.com%2Feslint-plugin-node%2Fdownload%2Feslint-plugin-node-11.1.0.tgz#c95544416ee4ada26740a30474eefc5402dc671d"
-  integrity sha1-yVVEQW7kraJnQKMEdO78VALcZx0=
-  dependencies:
-    eslint-plugin-es "^3.0.0"
-    eslint-utils "^2.0.0"
-    ignore "^5.1.1"
-    minimatch "^3.0.4"
-    resolve "^1.10.1"
-    semver "^6.1.0"
 
 eslint-plugin-promise@6.0.0:
   version "6.0.0"
@@ -2119,7 +2099,7 @@ semver@^5.6.0:
   resolved "https://registry.nlark.com/semver/download/semver-5.7.1.tgz?cache=0&sync_timestamp=1618846864940&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fsemver%2Fdownload%2Fsemver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
   integrity sha1-qVT5Ma66UI0we78Gnv8MAclhFvc=
 
-semver@^6.1.0, semver@^6.3.0:
+semver@^6.3.0:
   version "6.3.0"
   resolved "https://registry.nlark.com/semver/download/semver-6.3.0.tgz?cache=0&sync_timestamp=1618846864940&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fsemver%2Fdownload%2Fsemver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha1-7gpkyK9ejO6mdoexM3YeG+y9HT0=
@@ -2159,10 +2139,10 @@ side-channel@^1.0.4:
     get-intrinsic "^1.0.2"
     object-inspect "^1.9.0"
 
-simple-cloudbase@^0.2.7:
-  version "0.2.7"
-  resolved "https://registry.npmmirror.com/simple-cloudbase/-/simple-cloudbase-0.2.7.tgz#73a5dbdd1cff51fd744f65eaf0ad5e7fc722032e"
-  integrity sha512-Fv/p/m3LKU/xQkbGByh+bIqcFkZFeG2+1/EDDBnC1rc/usk0QHFcDsHjSEzhDEomS1nk10LONan571JTsBLOew==
+simple-cloudbase@^0.3.0-beta.0:
+  version "0.3.0-beta.0"
+  resolved "https://registry.npmmirror.com/simple-cloudbase/-/simple-cloudbase-0.3.0-beta.0.tgz#1a10432e0f871482bddbcf1eb112852f016ab308"
+  integrity sha512-5j0JO7PfTuoBM4HyLZBQWS42eJRT5N0kqJBUhVOqXtqElH87k3tDcbSQxlupVBwhiiaGPuF6RpUlWVJ5xZ93yQ==
   dependencies:
     esbuild "^0.14.38"
 

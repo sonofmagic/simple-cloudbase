@@ -4,7 +4,8 @@ import {
   copyConfigJson,
   resolve,
   log,
-  copyPkgDeps
+  copyPkgDeps,
+  tryParsePkgJson
 } from './util'
 import { build } from './build/index'
 import { mergeDefaultConfig } from './build/defaults'
@@ -20,13 +21,11 @@ export async function buildAll (opt: IBuildPathOption) {
     opt.outdir = 'dist'
   }
   const options = await getFunctions(resolve(opt.rootdir, opt.srcdir))
-  let pkg: {
+  const rootPkg: {
     dependencies?: Record<string, string>;
-  } | null = null
-  try {
-    pkg = require(resolve(opt.rootdir, 'package.json'))
-  } catch (error) {
-    log.error('package.json not found')
+  } | null = tryParsePkgJson(opt.rootdir)
+  if (!rootPkg) {
+    log.error('root dir package.json not found')
   }
 
   const buildResultArray = await Promise.all(
@@ -36,9 +35,15 @@ export async function buildAll (opt: IBuildPathOption) {
         entryPoints: [resolve(cur.path, 'index')],
         outfile: resolve(outdir, 'index.js')
       }
-      if (pkg) {
-        fnOpt.external = pkg.dependencies ? Object.keys(pkg.dependencies) : []
-      }
+      const pkg = tryParsePkgJson(cur.path)
+      const dependencies = Object.assign(
+        {},
+        rootPkg ? rootPkg.dependencies ?? {} : {},
+        pkg ? pkg.dependencies ?? {} : {}
+      )
+      const depsKeys = Object.keys(dependencies)
+      fnOpt.external = depsKeys
+
       const config = mergeDefaultConfig(
         fnOpt,
         pick(cur.extra, PickKeys) as BuildOptions
@@ -49,11 +54,11 @@ export async function buildAll (opt: IBuildPathOption) {
       acc.push(
         build(config).then(async (res) => {
           await copyConfigJson(cur.path, outdir)
-          if (pkg && pkg.dependencies) {
+          if (depsKeys.length) {
             await copyPkgDeps(
               {
                 name: cur.name,
-                dependencies: pkg.dependencies
+                dependencies
               },
               outdir
             )

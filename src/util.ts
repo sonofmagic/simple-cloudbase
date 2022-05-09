@@ -52,6 +52,15 @@ export async function copyConfigJson (srcDir: string, outDir: string) {
     await fsp.copyFile(srcPath, outPath)
   }
 }
+export async function copyPkgDeps (pkg: any, outDir: string) {
+  const filename = 'package.json'
+
+  await fsp.writeFile(
+    path.resolve(outDir, filename),
+    JSON.stringify(pkg, null, 2),
+    'utf-8'
+  )
+}
 
 export const PickKeys = [
   'bundle',

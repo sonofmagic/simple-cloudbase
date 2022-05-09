@@ -10,3 +10,10 @@ export type IBuiltinOption = {
     [key: string]: any
   }
 }
+
+export interface IBuildPathOption {
+  rootdir: string;
+  srcdir?: string;
+  outdir?: string;
+  watch?: boolean;
+}

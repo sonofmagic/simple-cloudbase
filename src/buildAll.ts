@@ -1,14 +1,16 @@
-import { getFunctions, PickKeys, copyConfigJson, resolve, log } from './util'
+import {
+  getFunctions,
+  PickKeys,
+  copyConfigJson,
+  resolve,
+  log,
+  copyPkgDeps
+} from './util'
 import { build } from './build/index'
 import { mergeDefaultConfig } from './build/defaults'
 import type { BuildOptions, BuildResult } from 'esbuild'
+import type { IBuildPathOption } from './type'
 import pick from 'lodash/pick'
-export interface IBuildPathOption {
-  rootdir: string
-  srcdir?: string
-  outdir?: string
-  watch?: boolean
-}
 
 export async function buildAll (opt: IBuildPathOption) {
   if (!opt.srcdir) {
@@ -18,6 +20,15 @@ export async function buildAll (opt: IBuildPathOption) {
     opt.outdir = 'dist'
   }
   const options = await getFunctions(resolve(opt.rootdir, opt.srcdir))
+  let pkg: {
+    dependencies?: Record<string, string>;
+  } | null = null
+  try {
+    pkg = require(resolve(opt.rootdir, 'package.json'))
+  } catch (error) {
+    log.error('package.json not found')
+  }
+
   const buildResultArray = await Promise.all(
     options.reduce<Promise<BuildResult>[]>((acc, cur) => {
       const outdir = resolve(opt.rootdir, opt.outdir as string, cur.name)
@@ -25,7 +36,9 @@ export async function buildAll (opt: IBuildPathOption) {
         entryPoints: [resolve(cur.path, 'index')],
         outfile: resolve(outdir, 'index.js')
       }
-
+      if (pkg) {
+        fnOpt.external = pkg.dependencies ? Object.keys(pkg.dependencies) : []
+      }
       const config = mergeDefaultConfig(
         fnOpt,
         pick(cur.extra, PickKeys) as BuildOptions
@@ -36,6 +49,15 @@ export async function buildAll (opt: IBuildPathOption) {
       acc.push(
         build(config).then(async (res) => {
           await copyConfigJson(cur.path, outdir)
+          if (pkg && pkg.dependencies) {
+            await copyPkgDeps(
+              {
+                name: cur.name,
+                dependencies: pkg.dependencies
+              },
+              outdir
+            )
+          }
           return res
         })
       )

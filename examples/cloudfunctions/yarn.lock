@@ -2139,10 +2139,10 @@ side-channel@^1.0.4:
     get-intrinsic "^1.0.2"
     object-inspect "^1.9.0"
 
-simple-cloudbase@^0.3.0-beta.0:
-  version "0.3.0-beta.0"
-  resolved "https://registry.npmmirror.com/simple-cloudbase/-/simple-cloudbase-0.3.0-beta.0.tgz#1a10432e0f871482bddbcf1eb112852f016ab308"
-  integrity sha512-5j0JO7PfTuoBM4HyLZBQWS42eJRT5N0kqJBUhVOqXtqElH87k3tDcbSQxlupVBwhiiaGPuF6RpUlWVJ5xZ93yQ==
+simple-cloudbase@^0.3.0-beta.1:
+  version "0.3.0-beta.1"
+  resolved "https://registry.npmmirror.com/simple-cloudbase/-/simple-cloudbase-0.3.0-beta.1.tgz#51a96caf56450b5a14272739e285a8d21c92bacd"
+  integrity sha512-icCYGiGBW3tfGbQYG+K79V/ElTAB+ZYVLvs4yT1LNE6EeF40C5TwNlgadCIKSFZgHu+Fac9BrE0e29LKdSEgTw==
   dependencies:
     esbuild "^0.14.38"
 

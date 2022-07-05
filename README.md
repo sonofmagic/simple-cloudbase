@@ -2,6 +2,8 @@
 
 > 微信云开发的收费模式，即将迎来调整，添加了最低月费和按DAU收费，这背离了 serverless 的初衷
 
+> 2022年7月4日，[微信云开发计费调整公告](https://developers.weixin.qq.com/community/minihome/doc/0000a680588d3891fa2ec250c51401?source=indexnew)，涨幅高达50倍！！还能给个人开发者使用吗？
+
 这是一个为微信云开发定制的框架,结合 `@cloudbase/cli`使用来完成云函数的工程化
 
 [**文档在此**](https://cloudbase.icebreaker.top/)
